@@ -26,6 +26,7 @@ sudo docker exec es01 rm -f /tmp/certs.tar.gz
 7. Use the `run.sh` Bash script to run suricata + nginx + filebeat + auditbeat:
 ```bash
 chmod +x ./run.sh
+chmod +x ./startup.sh
 sudo ./run.sh
 ```
 8. Follow interactive configuration:
