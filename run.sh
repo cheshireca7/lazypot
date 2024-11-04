@@ -74,25 +74,25 @@ function deps(){
 		verbose "Installing docker ... "
   
 		# Uninstall conflicting packages
-		for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -yq "${pkg}"; done
+		for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do apt-get remove -yq "${pkg}" &>/dev/null; done 
 
 		# Update apt and install prerequisites
-		apt-get update -yq
-		apt-get install -yq ca-certificates curl
+		apt-get update -yq &>/dev/null
+		apt-get install -yq ca-certificates curl &>/dev/null
 
 		# Set up Docker's official GPG key
 		install -m 0755 -d /etc/apt/keyrings &>/dev/null
-		curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
+		curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc &>/dev/null
 		chmod a+r /etc/apt/keyrings/docker.asc
 
 		# Add Docker repository to apt sources
 		echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian $(. /etc/os-release && echo "${VERSION_CODENAME}") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 		# Update apt again to include Docker's repo
-		apt-get update -yq
+		apt-get update -yq &>/dev/null
 
 		# Install Docker Engine, CLI, containerd, and Docker Compose plugin
-		apt-get install -yq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+		apt-get install -yq docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin &>/dev/null
 
 		# Verify the installation
 		docker run hello-world &>/dev/null
