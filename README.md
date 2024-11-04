@@ -16,9 +16,9 @@ sudo docker compose -f docker-compose-elasticstack.yml up -d
 ```
 4. Download the CA certificate, and Elasticsearch PEM certificate and key
 ```bash
-sudo docker exec elastic_stack-es01-1 tar cvzf /tmp/certs.tar.gz /usr/share/elasticsearch/config/certs/ca/ca.crt /usr/share/elasticsearch/config/certs/es01/es01.crt /usr/share/elasticsearch/config/certs/es01/es01.key
-sudo docker cp elastic_stack-es01-1:/tmp/certs.tar.gz .
-sudo docker exec elastic_stack-es01-1 rm -f /tmp/certs.tar.gz
+sudo docker exec es01 tar cvzf /tmp/certs.tar.gz /usr/share/elasticsearch/config/certs/ca/ca.crt /usr/share/elasticsearch/config/certs/es01/es01.crt /usr/share/elasticsearch/config/certs/es01/es01.key
+sudo docker cp es01:/tmp/certs.tar.gz .
+sudo docker exec es01 rm -f /tmp/certs.tar.gz
 ```
 ## Process to deploy Lazypot in the public server
 5. Download `Dockerfile`, `docker-compose-lazypot.yml`, `nginx`, `startup.sh` and `run.sh`
