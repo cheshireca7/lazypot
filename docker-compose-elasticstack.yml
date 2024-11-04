@@ -1,6 +1,7 @@
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_configure_and_start_the_cluster
 services:
   setup:
+    container_name: setup
     image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
     volumes:
       - certs:/usr/share/elasticsearch/config/certs
@@ -50,6 +51,7 @@ services:
       retries: 120
 
   es01:
+    container_name: es01
     depends_on:
       setup:
         condition: service_healthy
@@ -92,6 +94,7 @@ services:
       retries: 120
 
   kibana:
+    container_name: kibana
     depends_on:
       es01:
         condition: service_healthy
